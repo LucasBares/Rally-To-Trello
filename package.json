@@ -1,0 +1,28 @@
+{
+  "name": "rallytotrello",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "node-rest-client": "^3.1.0",
+    "trello": "^0.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LucasBares/Rally-To-Trello.git"
+  },
+  "keywords": [
+    "rally",
+    "trello"
+  ],
+  "author": "Lucas Bares",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LucasBares/Rally-To-Trello/issues"
+  },
+  "homepage": "https://github.com/LucasBares/Rally-To-Trello"
+}
