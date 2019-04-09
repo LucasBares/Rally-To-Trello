@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "fs": "0.0.1-security",
     "node-rest-client": "^3.1.0",
+    "read-config": "^2.0.0",
+    "system-sleep": "^1.3.6",
     "trello": "^0.9.1"
   },
   "devDependencies": {},

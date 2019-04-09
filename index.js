@@ -1,21 +1,26 @@
 var Client = require('node-rest-client').Client;
-var options_auth = { user: "user from rally", password: "password from rally" };
-var client = new Client(options_auth);
 var Trello = require('trello');
-var trello = new Trello("trello_key", "trello_token");
- 
+const fs = require('fs');
+let content = fs.readFileSync('config.json'); 
+var sleep = require('system-sleep'); 
 
-function postBlocked(){
-    client.get("https://rally1.rallydev.com/slm/webservice/v2.0/defect?fetch=Tasks:summary%5BState%2BBlocked%5D]&order=Rank&start=1&pagesize=2000", function (data) {
+let config = JSON.parse(content);
+var options_auth = { user: config.rally_user, password: config.rally_password };
+var client = new Client(options_auth);
+var trello = new Trello(config.trello_key, config.trello_token);
+let url = config.url;
+let list = config.list;
+
+function postCard(url,listId){
+    client.get(url, function (data) {
         let a = data.QueryResult.Results;
         let arr = a;
         for (var i = 0; i < 2000 ; i++) {
             if(arr[i] != undefined){
                 let id = arr[i]._ref;
                 let name = arr[i]._refObjectName;
-                let list = 'list-id from trello';
-
-                trello.addCard(name, id, list ,function(trelloCard){
+                sleep(1500);
+                trello.addCard(name, id, listId ,function(trelloCard){
                     console.log('Added card:', trelloCard);
                 });
             }
@@ -23,23 +28,4 @@ function postBlocked(){
     });
 }
 
-function postReady(){
-    client.get("https://rally1.rallydev.com/slm/webservice/v2.0/defect?fetch=Tasks:summary%5BState%2BReady%5D]&order=Rank&start=1&pagesize=2000", function (data) {
-        let a = data.QueryResult.Results;
-        let arr = a;
-        for (var i = 0; i < 2000 ; i++) {
-            if(arr[i] != undefined){
-                let id = arr[i]._ref;
-                let name = arr[i]._refObjectName;
-                let list = 'list-id from trello';
-
-                trello.addCard(name, id, list ,function(trelloCard){
-                    console.log('Added card:', trelloCard);
-                });
-            }
-        }
-    });
-}
-
-postBlocked();
-postReady();
+postCard(url,list);

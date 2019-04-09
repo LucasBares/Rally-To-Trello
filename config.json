@@ -1,0 +1,8 @@
+{
+    "rally_user" : "rally_user",
+    "rally_password" : "rally_password",
+    "trello_key": "trello_key",
+    "trello_token": "trello_token",
+    "url": "url",
+    "list": "list"
+}
