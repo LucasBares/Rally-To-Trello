@@ -13,8 +13,7 @@ let list = config.list;
 
 function postCard(url,listId){
     client.get(url, function (data) {
-        let a = data.QueryResult.Results;
-        let arr = a;
+        let arr = data.QueryResult.Results;
         for (var i = 0; i < 2000 ; i++) {
             if(arr[i] != undefined){
                 let id = arr[i]._ref;
